@@ -146,6 +146,7 @@
       center: cfg.mapCenter,
       zoom: cfg.mapZoom,
       maxZoom: 13,
+      logoPosition: "top-right",
     });
 
     // Darken the light-v11 basemap to roughly match the old light-v10 look

@@ -148,6 +148,17 @@
       maxZoom: 13,
     });
 
+        // Darken the light-v11 basemap to roughly match the old light-v10 look
+    map.on("style.load", () => {
+      const tweaks = {
+        land: { prop: "background-color", value: "#ececec" },
+        water: { prop: "fill-color", value: "#c9d3d9" },
+      };
+      Object.entries(tweaks).forEach(([layer, t]) => {
+        if (map.getLayer(layer)) map.setPaintProperty(layer, t.prop, t.value);
+      });
+    });
+
     spiderifier = new MapboxglSpiderifier(map, {
       customPin: true,
       initializeLeg: function (spiderLeg) {

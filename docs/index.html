@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Indian Energy Projects Map</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.10/css/dataTables.bootstrap.min.css" rel="stylesheet" media="all">
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.css' rel='stylesheet' media="all"/>
+
+    <link href="css/styles.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      (function() {
+          var so = document.createElement('script');
+          so.type = 'text/javascript';
+          so.async = true;
+          so.src = 'https://www.eere.energy.gov/includes/ga/eere.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(so, s);
+      })();
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div id="ui-controls">
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">State</h3>
+                    </div>
+                    <div class="panel-body">
+                        <select class="form-control" data-target="State">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Technology</h3>
+                    </div>
+                    <div class="panel-body" data-target="Technology">
+                    </div>
+                </div>
+
+                <div class="panel panel-default hide">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Category</h3>
+                    </div>
+                    <div class="panel-body" data-target="Category">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="map">
+                <div id="map" class="mapbox-map"></div>
+                <div class="map-navigation">
+                    <a href="#" data-position="62,-153" class="btn btn-default"><img src="images/icon-alaska.png" class="img-responsive" alt="Alaska"><span class="badge" id="count-alaska"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="datatable" class="table table-striped table-condensed"></table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Libraries -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.10/js/dataTables.bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+<!-- End Libraries -->
+
+
+<!-- Templates -->
+<script data-template="State" type="text/x-handlebars-template">
+    <option value="">All</option>
+    {{#each State}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</script>
+
+<script data-template="Technology" type="text/x-handlebars-template">
+    {{#each Technology}}
+    <div class="checkbox">
+    <label><input type="checkbox" value="{{this}}"> {{this}} </label>
+    </div>
+    {{/each}}
+</script>
+
+<script data-template="Category" type="text/x-handlebars-template">
+    {{#each [Category]}}
+    <div class="checkbox">
+    <label><input type="checkbox" value="{{this}}"> {{this}} </label>
+    </div>
+    {{/each}}
+</script>
+<!-- End Templates -->
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+<script src="js/geojson.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/spider.js"></script>
+<script src="js/app.js"></script>
+
+
+</body>
+</html>

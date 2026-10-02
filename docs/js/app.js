@@ -142,7 +142,7 @@
     mapboxgl.accessToken = cfg.mapboxToken;
     map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/mapbox/light-v10",
+      style: "mapbox://styles/mapbox/light-v11",
       center: cfg.mapCenter,
       zoom: cfg.mapZoom,
       maxZoom: 13,

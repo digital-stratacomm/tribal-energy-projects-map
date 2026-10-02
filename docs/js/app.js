@@ -152,12 +152,22 @@
     map.on("style.load", () => {
       const LAND = "#e6e6e6";
       const WATER = "#c3ccd1";
+      const STATE_TEXT = "#7a7a7a";  // state/province names
+      const PLACE_TEXT = "#555555";  // cities and countries
       map.getStyle().layers.forEach((layer) => {
+        const id = layer.id;
         if (layer.type === "background") {
-          map.setPaintProperty(layer.id, "background-color", LAND);
+          map.setPaintProperty(id, "background-color", LAND);
         }
-        if (layer.type === "fill" && layer.id.startsWith("water")) {
-          map.setPaintProperty(layer.id, "fill-color", WATER);
+        if (layer.type === "fill" && id.startsWith("water")) {
+          map.setPaintProperty(id, "fill-color", WATER);
+        }
+        if (layer.type === "symbol") {
+          if (id.includes("state")) {
+            map.setPaintProperty(id, "text-color", STATE_TEXT);
+          } else if (id.includes("settlement") || id.includes("country")) {
+            map.setPaintProperty(id, "text-color", PLACE_TEXT);
+          }
         }
       });
     });
